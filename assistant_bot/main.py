@@ -1,10 +1,15 @@
 """
 Головний модуль програми з основним циклом обробки команд.
 """
-from address_book import AddressBook
-from assistant_bot.handlers import add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday, \
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from address_book.address_book import AddressBook
+from handlers import add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday, \
     birthdays
-from assistant_bot.parser import parse_input
+from parser import parse_input
+
 
 
 def main():
