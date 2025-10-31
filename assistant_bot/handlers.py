@@ -53,8 +53,10 @@ def add_contact(args, book):
         record = Record(name)
         book.add_record(record)
         message = "Contact added."
+
     if phone:
         record.add_phone(phone)
+
     return message
 
 

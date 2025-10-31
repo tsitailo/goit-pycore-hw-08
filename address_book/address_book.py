@@ -14,6 +14,7 @@ class AddressBook(UserDict):
     Наслідується від UserDict для зручної роботи зі словником.
     Ключем є ім'я контакту, значенням - об'єкт Record.
     """
+
     def add_record(self, record):
         """
         Додавання запису до адресної книги.
@@ -125,8 +126,9 @@ class AddressBook(UserDict):
         if record is None:
             return False
 
-        record.phones.clear()
-        record.add_phone(new_phone)
+        record.add_phone(new_phone)  # ValueError: Якщо новий номер телефону недійсний
+        # залишимо лише останній доданий телефон
+        record.phones = [record.phones[-1]]
 
         return True
 

@@ -6,9 +6,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from address_book.address_book import AddressBook
-from handlers import add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday, \
+from assistant_bot.handlers import add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday, \
     birthdays
-from parser import parse_input
+from assistant_bot.parser import parse_input
 
 
 
@@ -16,6 +16,8 @@ def main():
     """
     Головна функція, яка управляє циклом обробки команд.
     """
+    #init_for_tests_only()
+
     with AddressBook("addressbook.pkl") as book:
         print("Welcome to the assistant bot!")
 
@@ -53,6 +55,14 @@ def main():
 
             else:
                 print("Invalid command.")
+
+
+def init_for_tests_only():
+    book = AddressBook()
+    filename = "addressbook.pkl"
+
+    # Create an empty file for tests (overwrite if exists)
+    book.save_to_file(filename)
 
 
 if __name__ == "__main__":
