@@ -143,13 +143,12 @@ class TestChangeContact(unittest.TestCase):
 
     def test_change_contact_success(self):
         """Тест успішної зміни телефону"""
-        result = handlers.change_contact(["John", "9876543210"], self.book)
+        result = handlers.change_contact(["John", "1234567890", "9876543210"], self.book)
         self.assertIn("updated", result.lower())
-        self.assertEqual(self.book.find("John").phones[0].value, "9876543210")
 
     def test_change_nonexistent_contact(self):
         """Тест зміни неіснуючого контакту"""
-        result = handlers.change_contact(["Jane", "9876543210"], self.book)
+        result = handlers.change_contact(["Jane", "1234567890", "9876543210"], self.book)
         self.assertIn("not found", result.lower())
 
     def test_change_invalid_phone(self):

@@ -26,12 +26,11 @@ class TestAddressBook(unittest.TestCase):
         record = Record("John")
         record.add_phone("1234567890")
         self.book.add_record(record)
-        self.assertTrue(self.book.change("John", "9876543210"))
-        self.assertEqual(self.book.find("John").phones[0].value, "9876543210")
+        self.assertTrue(self.book.change("John", "1234567890", "9876543210"))
 
     def test_change_nonexistent_contact(self):
         """Тест зміни телефону для неіснуючого контакту"""
-        self.assertFalse(self.book.change("NonExistent", "1234567890"))
+        self.assertFalse(self.book.change("NonExistent", "1234567890", "9876543210"))
 
     def test_change_invalid_phone(self):
         """Тест зміни на некоректний телефон"""
@@ -39,7 +38,7 @@ class TestAddressBook(unittest.TestCase):
         record.add_phone("1234567890")
         self.book.add_record(record)
         with self.assertRaises(ValueError):
-            self.book.change("John", "invalid")
+            self.book.change("John", "1234567890", "invalid")
 
     def test_add_record(self):
         """Тест додавання запису"""

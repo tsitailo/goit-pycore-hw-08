@@ -108,12 +108,13 @@ class AddressBook(UserDict):
         else:
             raise KeyError(f"Contact {name} not found")
 
-    def change(self, name: str, new_phone: str) -> bool:
+    def change(self, name: str, old_phone: str, new_phone: str) -> bool:
         """
         Змінює номер телефону для існуючого контакту.
 
         Args:
-            name: Ім'я контакту  
+            name: Ім'я контакту
+            old_phone: Старий номер телефону для заміни
             new_phone: Новий номер телефону для встановлення
 
         Returns:
@@ -126,9 +127,10 @@ class AddressBook(UserDict):
         if record is None:
             return False
 
-        record.add_phone(new_phone)  # ValueError: Якщо новий номер телефону недійсний
-        # залишимо лише останній доданий телефон
-        record.phones = [record.phones[-1]]
+        if record.find_phone(old_phone):
+            record.edit_phone(old_phone, new_phone)
+        else:
+            record.add_phone(new_phone)
 
         return True
 

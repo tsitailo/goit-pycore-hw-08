@@ -76,9 +76,9 @@ def change_contact(args, book):
         IndexError: Якщо недостатньо аргументів
         KeyError: Якщо контакт не знайдено
     """
-    name, phone, *_ = args  # Викине IndexError якщо недостатньо аргументів
+    name, old_phone, new_phone, *_ = args  # Викине IndexError якщо недостатньо аргументів
 
-    if not book.change(name, phone):
+    if not book.change(name, old_phone, new_phone):
         raise KeyError(name)  # Декоратор обробить
 
     return "Contact updated."
