@@ -1,13 +1,14 @@
 """Тести для класу Field."""
 
 import sys
-import unittest
 from pathlib import Path
 
 # Додаємо батьківську директорію до sys.path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from address_book import Field
+import unittest  # noqa: E402
+
+from address_book import Field  # noqa: E402
 
 
 class TestField(unittest.TestCase):

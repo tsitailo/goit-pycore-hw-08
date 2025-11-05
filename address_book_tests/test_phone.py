@@ -1,12 +1,13 @@
 """Тести для класу Phone."""
 
 import sys
-import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from address_book import Phone
+import unittest  # noqa: E402
+
+from address_book import Phone  # noqa: E402
 
 
 class TestPhone(unittest.TestCase):

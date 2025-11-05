@@ -1,7 +1,6 @@
 from functools import wraps
 
 from address_book import Record
-from address_book import Birthday
 
 
 def input_error(func):

@@ -3,20 +3,20 @@
 """
 import sys
 from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from address_book.address_book import AddressBook
+from address_book.address_book import AddressBook  # noqa: E402
 from assistant_bot.handlers import add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday, \
-    birthdays
-from assistant_bot.parser import parse_input
-
+    birthdays  # noqa: E402
+from assistant_bot.parser import parse_input  # noqa: E402
 
 
 def main():
     """
     Головна функція, яка управляє циклом обробки команд.
     """
-    #init_for_tests_only()
+    # init_for_tests_only()
 
     with AddressBook("addressbook.pkl") as book:
         print("Welcome to the assistant bot!")

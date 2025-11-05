@@ -206,3 +206,4 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 /assistant_bot/addressbook.pkl
+/assistant_bot_tests/addressbook.pkl

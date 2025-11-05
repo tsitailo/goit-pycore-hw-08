@@ -1,14 +1,15 @@
 """Тести для модуля handlers."""
 
 import sys
-import unittest
-from datetime import datetime, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from address_book import AddressBook, Record
-from assistant_bot import handlers
+import unittest  # noqa: E402
+from datetime import datetime, timedelta  # noqa: E402
+
+from address_book import AddressBook, Record  # noqa: E402
+from assistant_bot import handlers  # noqa: E402
 
 
 class TestInputErrorDecorator(unittest.TestCase):
@@ -108,7 +109,7 @@ class TestAddContact(unittest.TestCase):
     def test_add_existing_contact(self):
         """Тест додавання існуючого контакту (перезапис)"""
         handlers.add_contact(["John", "1234567890"], self.book)
-        result = handlers.add_contact(["John", "9876543210"], self.book)
+        handlers.add_contact(["John", "9876543210"], self.book)
         # Перевіряємо що контакт існує
         john = self.book.find("John")
         self.assertIsNotNone(john)
@@ -221,9 +222,9 @@ class TestShowAll(unittest.TestCase):
         result = handlers.show_all(self.book)
         # Перевіряємо що повідомлення вказує на відсутність контактів
         self.assertTrue(
-            "empty" in result.lower() or
-            "no contacts" in result.lower() or
-            "not found" in result.lower(),
+            "empty" in result.lower()
+            or "no contacts" in result.lower()
+            or "not found" in result.lower(),
             f"Expected empty book message, got: {result}"
         )
 

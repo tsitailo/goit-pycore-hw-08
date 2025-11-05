@@ -1,13 +1,15 @@
 """Тести для класу AddressBook."""
 
 import sys
-import unittest
-from datetime import timedelta, datetime
 from pathlib import Path
 
+# Add parent directory to path before importing custom modules
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from address_book import AddressBook, Record
+import unittest  # noqa: E402
+from datetime import timedelta, datetime  # noqa: E402
+
+from address_book import AddressBook, Record  # noqa: E402
 
 
 class TestAddressBook(unittest.TestCase):
@@ -262,7 +264,8 @@ class TestAddressBook(unittest.TestCase):
 
         result = self.book.get_upcoming_birthdays()
         if len(result) > 0:  # Якщо субота потрапляє в діапазон 7 днів
-            congratulation_date = datetime.strptime(result[0]["congratulation_date"], "%d.%m.%Y").date()
+            congratulation_date = datetime.strptime(result[0]["congratulation_date"],
+                                                    "%d.%m.%Y").date()
             # Перевіряємо що це понеділок
             self.assertEqual(congratulation_date.weekday(), 0)
 
@@ -325,8 +328,6 @@ class TestAddressBook(unittest.TestCase):
 
     def test_get_upcoming_birthdays_leap_year(self):
         """Тест з днем народження 29 лютого"""
-        today = datetime.today().date()
-
         # Якщо зараз близько до 29 лютого, тестуємо
         john = Record("John")
         john.add_birthday("29.02.1992")  # Високосний рік

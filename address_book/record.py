@@ -31,6 +31,25 @@ class Record:
         self.phones = []
         self.birthday = None
 
+    def __str__(self):
+        """
+        Повертає строкове представлення запису.
+
+        Returns:
+            str: Форматований рядок з ім'ям та телефонами
+        """
+        birthday_str = f", birthday: {self.birthday.value.strftime('%d.%m.%Y')}" if self.birthday else ""
+        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}{birthday_str}"
+
+    def __repr__(self):
+        """
+        Повертає представлення об'єкта для розробників.
+
+        Returns:
+            str: Представлення об'єкта
+        """
+        return f"Record(name={self.name.value!r}, phones={[p.value for p in self.phones]})"
+
     def add_birthday(self, birthday):
         """
         Додавання дня народження до запису.
@@ -112,22 +131,3 @@ class Record:
             if phone_obj.value == phone:
                 return phone_obj
         return None
-
-    def __str__(self):
-        """
-        Повертає строкове представлення запису.
-
-        Returns:
-            str: Форматований рядок з ім'ям та телефонами
-        """
-        birthday_str = f", birthday: {self.birthday.value.strftime('%d.%m.%Y')}" if self.birthday else ""
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}{birthday_str}"
-
-    def __repr__(self):
-        """
-        Повертає представлення об'єкта для розробників.
-
-        Returns:
-            str: Представлення об'єкта
-        """
-        return f"Record(name={self.name.value!r}, phones={[p.value for p in self.phones]})"

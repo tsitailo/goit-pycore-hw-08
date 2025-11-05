@@ -14,6 +14,40 @@ class AddressBook(UserDict):
     Наслідується від UserDict для зручної роботи зі словником.
     Ключем є ім'я контакту, значенням - об'єкт Record.
     """
+    def __init__(self, filename="addressbook.pkl"):
+        super().__init__()
+        self.data = {}
+        self.filename = filename
+
+    def __str__(self):
+        """
+        Повертає строкове представлення адресної книги.
+
+        Returns:
+            str: Список всіх контактів
+        """
+        if not self.data:
+            return "Address book is empty"
+        return "\n".join(str(record) for record in self.data.values())
+
+    def __repr__(self):
+        """
+        Повертає представлення об'єкта для розробників.
+
+        Returns:
+            str: Представлення об'єкта
+        """
+        return f"AddressBook(records={len(self.data)})"
+
+    def __enter__(self):
+        """Завантажує дані при вході в context"""
+        self.load_from_file(self.filename)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Автоматично зберігає дані при виході"""
+        self.save_to_file(self.filename)
+        return False
 
     def add_record(self, record):
         """
@@ -133,41 +167,6 @@ class AddressBook(UserDict):
             record.add_phone(new_phone)
 
         return True
-
-    def __str__(self):
-        """
-        Повертає строкове представлення адресної книги.
-
-        Returns:
-            str: Список всіх контактів
-        """
-        if not self.data:
-            return "Address book is empty"
-        return "\n".join(str(record) for record in self.data.values())
-
-    def __repr__(self):
-        """
-        Повертає представлення об'єкта для розробників.
-
-        Returns:
-            str: Представлення об'єкта
-        """
-        return f"AddressBook(records={len(self.data)})"
-
-    def __init__(self, filename="addressbook.pkl"):
-        super().__init__()
-        self.data = {}
-        self.filename = filename
-
-    def __enter__(self):
-        """Завантажує дані при вході в context"""
-        self.load_from_file(self.filename)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """Автоматично зберігає дані при виході"""
-        self.save_to_file(self.filename)
-        return False
 
     def save_to_file(self, filename=None):
         """Зберігає адресну книгу у файл"""

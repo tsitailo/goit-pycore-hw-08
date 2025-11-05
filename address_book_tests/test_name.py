@@ -1,12 +1,13 @@
 """Тести для класу Name."""
 
 import sys
-import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from address_book import Name
+import unittest  # noqa: E402
+
+from address_book import Name  # noqa: E402
 
 
 class TestName(unittest.TestCase):
